@@ -1,0 +1,28 @@
+.reports-body {
+  font-family: 'Open Sans', sans-serif;
+  width: 20px;
+  margin: auto;
+  align-items: center;
+  width: 80%;
+}
+
+.send_report_button{
+  background-color:#ffa292;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 0 auto;
+  font-size: 12px;
+  cursor: pointer;
+  margin-bottom: 60px;
+}
+
+.report_message_area {
+  width: 250px;
+  height: 50px;
+  border: solid black 1px;
+  margin-top: 30px;
+}
+  

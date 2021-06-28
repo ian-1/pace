@@ -1,0 +1,8 @@
+<%= stylesheet_link_tag "users", :media => "screen" %>
+
+<%= form_for([@user, @endorsement]) do |f| %>
+  <%= f.text_field :body, placeholder: 'Make an endorsement..', class: "input_message_form" %>   
+  <%= f.text_field :user_id, value: @user.id, type: "hidden" %> 
+  <%= f.text_field :endorser_id, value: current_user.id, type: "hidden" %> 
+  <%= f.submit "👍", class: "thumbs-up" %>
+<% end %>

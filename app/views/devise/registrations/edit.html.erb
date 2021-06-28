@@ -1,78 +1,79 @@
-<div class="background">
-  <div class="main-body">
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+<body>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="background">
+    <div class="form-body">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-      <div class="field">
-        <%= f.label :first_name %>
-        <%= f.text_field :first_name, autofocus: true, autocomplete: "first-name" %>
-      </div>
+        <div class="field">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, autofocus: true, autocomplete: "first-name" %>
+        </div>
 
-      <div class="field">
-        <%= f.label :postcode %>
-        <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode" %>
-      </div>
+        <div class="field">
+          <%= f.label :postcode %>
+          <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode" %>
+        </div>
 
-      <div class="field">
-      <%= f.label :gender, "Gender" %>
-      <%= f.select :gender, ['Female', 'Male', 'Non-Binary', 'Prefer not to say']%>
-      </div>
+        <div class="field">
+        <%= f.label :gender, "Gender" %>
+        <%= f.select :gender, ['Female', 'Male', 'Non-Binary', 'Prefer not to say']%>
+        </div>
 
-      <div class="field">
-        <%= f.label :ability, "Running ability" %>
-        <%= f.select :ability, ['Couch', 'Local Park', 'Marathon']%>
-      </div>
+        <div class="field">
+          <%= f.label :ability, "Running ability" %>
+          <%= f.select :ability, ['Couch', 'Local Park', 'Marathon']%>
+        </div>
 
-      <div class="field">
-        <%= f.label :goals, "Fitness Goals" %>
-        <%= f.select :goals, ['Distance', 'Speed', 'A bit of both']%>
-      </div>
+        <div class="field">
+          <%= f.label :goals, "Fitness Goals" %>
+          <%= f.select :goals, ['Distance', 'Speed', 'A bit of both']%>
+        </div>
 
-      <div class="field">
-      <%= f.label :profile_pic, "Profile picture" %>
-      <%= f.file_field :profile_pic %>
-      </div>
+        <div class="field">
+        <%= f.label :profile_pic, "Profile picture" %>
+        <%= f.file_field :profile_pic %>
+        </div>
 
-      <div class="field">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
 
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
-
-      <div class="field">
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: "new-password" %>
-        <br />
-        <i>(leave blank if you dont want to change it)</i>
-        <% if @minimum_password_length %>
-          <br />
-          <em><%= @minimum_password_length %> characters minimum</em>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
-      </div>
 
-      <div class="field">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
+        <div class="field">
+          <%= f.label :new_password %>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: '6 character minimum' %>
+          <br />
+        </div>
 
-      <div class="field">
-        <%= f.label :current_password %>
-        <%= f.password_field :current_password, autocomplete: "current-password" %>
-        <br /><i>(we need your current password to confirm your changes)</i>
-      </div>
+        <div class="field">
+          <%= f.label :confirm_password %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '6 character minimum' %>
+        </div>
 
-      <div class="actions">
-        <%= f.submit "Update" %>
-      </div>
-    <% end %>
+        <div class="field">
+          <%= f.label :current_password %>
+          <%= f.password_field :current_password, autocomplete: "current-password", placeholder: 'to confirm changes' %>
+        </div>
 
 
-    <br /> <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-    <%= link_to "Back", :back %>
+        <div class="actions_centered">
+          <div class="actions">
+            <%= f.submit "Update" %>
+          </div>
+
+          <div class="actions">
+            <p>Unhappy?</p> <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+            <%= link_to "Back", :back %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+
+</body>

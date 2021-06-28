@@ -1,52 +1,29 @@
-<p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag "meetups", :media => "all" %>
+<head>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+</head>
 
-<h1>Plan a run</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @meetups.each do |meetup| %>
-      <tr>
-        <td><%= meetup.name %></td>
-        <td><%= meetup.latitude %></td>
-        <td><%= meetup.longitude %></td>
-        <td><%= link_to 'Show', meetup %></td>
-        <td><%= link_to 'Edit', edit_meetup_path(meetup) %></td>
-        <td><%= link_to 'Destroy', meetup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-    <div style='width: 800px;'>
-      <div id="map" style='width: 800px; height: 400px;'></div>
+<body>
+  <div class="background">
+    <h1>Plan a run</h1>
+    <div class="instructions">
+      <p> 1. Pick your meetup spot by clicking on the map </p>
+      <p> 2. Give your meetup spot a description </p>
+      <p> 3. Press the 'Create meetup' button  </p>
     </div>
-    <script type="text/javascript">
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers([
-        {
-          "lat": 51.51284874525074,
-          "lng": -0.1573314555616207,
-          "picture": {
-            "width":  32,
-            "height": 32
-          },
-          "infowindow": "SJSU"
-        }
-      ]);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-    });
-    </script>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Meetup', new_meetup_path %>
+    <div id="form">
+      <%= render 'form', meetup: @meetup %>
+    </div>
+    <div class='map_holder'>
+      <input
+        id="pac-input"
+        class="controls"
+        type="text"
+        placeholder="Search Box"/>
+        <div id="map" style='width: 700px; height: 400px;'>
+          <%= javascript_pack_tag 'mapLogic' %>
+        </div>
+    <%= javascript_include_tag "//maps.googleapis.com/maps/api/js?key=#{@api_key}&callback=window.initAutocomplete&libraries=places&v=weekly" %>
+    </div>
+  </div>
+</body>

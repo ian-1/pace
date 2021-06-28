@@ -13,3 +13,18 @@
 //= require rails-ujs
 //= require_tree .
 //= require gmaps/google
+
+var drop2open = 0;
+function drop2(evt) {
+if (drop2open == 0) {
+document.getElementById('menu2').style.display="block";
+document.getElementById('topmenu').classList.toggle("change");
+drop2open = 1; }
+else {
+hide2(); } }
+
+function hide2() {
+if (drop2open == 1) {
+document.getElementById('menu2').style.display="none";
+document.getElementById('topmenu').classList.toggle("change");
+drop2open = 0; } }

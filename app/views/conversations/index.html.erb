@@ -1,23 +1,35 @@
 <%= stylesheet_link_tag "conversations", :media => "screen" %>
-<div class="main-body">
-
+<div class="conversations-body">
   <h2>My conversations</h2>
-  <% if @conversations.empty? %>
-    <p> You do not have any conversations yet </p>
-  <% else %>
+  <% displayed_conversations = false %>
   <% @conversations.each do |conversation| %>
-    <div class="my-conversations">
-      <span class="conversations">
-     <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-      <% if conversation.sender_id == current_user.id %>
-       <% recipient = User.find(conversation.recipient_id) %>
-      <% else %>
-       <% recipient = User.find(conversation.sender_id) %>
-      <% end %>
-      <%= link_to recipient.first_name, conversation_messages_path(conversation)%>
-     <% end %>
-      </span>
-     </div>
+    <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+      <% displayed_conversations = true %>
+      <div class="my-conversations">
+        <span class="conversations">
+          <% if conversation.sender_id == current_user.id %>
+            <% recipient = User.find(conversation.recipient_id) %>
+          <% else %>
+            <% recipient = User.find(conversation.sender_id) %>
+          <% end %>
+          <% unread_messages = 0 %>
+          <% @unread_counts.each do |count|%>
+            <% unread_messages = count[:unread_count] if count[:user_id] == recipient.id %>
+          <% end %>
+          <% if !@current_meetup %>
+            <% if unread_messages.nil? || unread_messages == 0 %>
+              <%= link_to(recipient.first_name, conversation_messages_path(conversation)) %>
+            <% else %>
+              <b><%= link_to("#{recipient.first_name} (#{unread_messages})", conversation_messages_path(conversation)) %></b></li>
+            <% end %>
+          <% else %>
+            <%= link_to recipient.first_name, conversation_messages_path(conversation, @current_meetup.id)%>
+          <% end %>
+        </span>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+  <% unless displayed_conversations %>
+    <p> You do not have any conversations yet </p>
+  <% end %>
 </div>

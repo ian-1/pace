@@ -1,4 +1,4 @@
-.main-body {
+.conversations-body {
   /* background-color: #f9fafb; */
   background-color: white;
   margin-left: auto;
@@ -16,7 +16,6 @@ h2{
 .my-conversations{
   padding: 12px 24px;
   text-align: center;
-
 }
 
 .conversations{

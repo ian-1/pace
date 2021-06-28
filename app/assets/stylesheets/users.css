@@ -2,37 +2,88 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/ */
 
-.main-body {
-  background-color: #f9fafb;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 20%;
+.profile-body {
+  flex-direction: column;
+  display: grid;
+  place-items: center;
 }
 
-.user-container {
+.user-container-profile {
   font-family: 'Open Sans', sans-serif;
   background-color: white;
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-top: 10%;
-  margin-bottom: 10%;
-  min-width: 350px;
-  max-width: 550px;
-  border:0;
   box-shadow:0 0 15px 4px rgba(248, 139, 139, 0.472);
+  padding: 4% 4% 4% 4%;
+  min-width: 300px;
+  max-width: 300px;
   text-align: center;
-  border-radius: 20px;
+  margin-bottom: 55px;
+  margin-top: 20px;
+  position: relative
+} 
+
+#endorsement_body {
+  margin-top: 100px;
+  margin-bottom: 10px;
+  width: 250px;
+  height:30px;
+  padding-left: 20px;
+  border-radius: 0.3em
+}
+
+.user-endorsements-container {
+  font-family: 'Open Sans', sans-serif;
+  background-color: white;
+  box-shadow:0 0 15px 4px rgba(248, 139, 139, 0.472);
+  padding: 4% 4% 4% 4%;
+  min-width: 300px;
+  max-width: 300px;
+  text-align: left;
+  margin-bottom: 70px;
 }
 
 .user-details {
-  padding: 20px;
+  padding: 10px;
   display: inline-block;
 }
 
 .profile_pic {
   width: 70%;
-  padding: 20px;
+  padding: 15px;
   border-radius: 50%;
+}
+
+.thumbs-up {
+  background: none;
+  border: none;
+  min-width: 50px;
+  min-height: 50px;
+  font-size: 30px;
+}
+
+.thumbs-up:hover {
+  transform: scale(1.2);
+  transition: 0.5s;
+}
+
+.message_user_bubble {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #a8dadc;
+  border-radius: 8px;
+  padding: 5px 5px;
+  text-align: center;
+  width: 40%;
+  position: absolute;
+  left: 30%
+}
+
+.report_user_bubble {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #a8dadc;
+  border-radius: 8px;
+  padding: 5px 5px;
+  text-align: center;
+  width: 40%;
+  position: absolute;
+  left: 30%;
+  margin-top: 40px
 }

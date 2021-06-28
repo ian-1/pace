@@ -1,8 +1,9 @@
 <%= stylesheet_link_tag "users", :media => "screen" %>
-<div class="main-body">
-  <div class="user-container">
+
+<div class="profile-body">
+  <div class="user-container-profile">
     <% if @reported %>
-      You have reported this user! Our admin team is looking into this.
+      <p> You have reported this user! Our admin team is looking into this. </p>
     <% end %>
 
     <% if @user.profile_pic.attached? %>
@@ -22,11 +23,38 @@
     <% if current_user.id == @user.id %>
       <p><%= @user.email %></p>
       <%= link_to "Edit", edit_user_registration_path %>
-    <% end %>
+    <% else %>
+      <div class="message_user_bubble"> 
+        <%= link_to "Message this user", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: "post"%>
+      </div>
 
-    <% if current_user.id != @user.id %>
-      <%= link_to "Message this user", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: "post"%>
-      <%= link_to "Report this user", new_user_report_path(user_id: @user.id) %>
+      <div class="report_user_bubble">
+        <%= link_to "Report this user", new_user_report_path(user_id: @user.id) %>
+      </div>
+      <%= render 'form', endorsement: @endorsement %>
     <% end %>
-  </div>
+    </div> 
+    <% if current_user.id != @user.id %>
+      <% if !@user_endorsements.empty? %>
+      <div class="user-endorsements-container">
+      <% unless @endorsement_counter == 0 %>
+        Endorsed by 👍 <%= @endorsement_counter %>
+      <% end %>
+      <br>
+      <% @user_endorsements.each do |endorsement| %>
+        <% user_name = '' %>
+      <% @users.each do |user| %>
+        <% user_name = user.first_name if user.id == endorsement[:user_id] %> 
+      <% end %>
+      <br>
+        <% if endorsement[:message] == '' %>
+          <i><%= user_name %></i>
+        <br>
+        <% else %>
+          <i><%= user_name %></i> 🗣 <%= endorsement[:message] %> 
+        <br>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>

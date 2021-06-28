@@ -1,23 +1,123 @@
 label{
   display: table-cell;
-  text-align: right;
-  padding: 10px;
+  text-align: center;
+  padding: 5px;
   padding-right: 20px;
   font-family: 'Open Sans', sans-serif;
 }
 
+.actions_centered{
+  margin-left: 2%;
+  margin-top: 2%;
+}
+
 div.field{
   display:table-row;
+  margin: 3px;
 }
 
 div.actions{
   display:table-row;
+  margin: 3px;
 }
 
-.main-body {
-  margin-left: auto;
-  margin-right: auto;
-  width: 20%;
+input#user_first_name{
+  height: 20px;
+  margin-left: 5px;
+  border-style: inset;
+}
+
+input#user_postcode{
+  height: 20px;
+  margin-left: 5px;
+  border-style: inset;
+}
+
+input#user_dob{
+  height: 24px;
+  margin-left: 5px;
+}
+
+input#user_email{
+  height: 20px;
+  margin-left: 5px;
+  border-style: inset;
+}
+
+input#user_password{
+  height: 20px;
+  margin-left: 5px;
+  border-style: inset;
+}
+
+input#user_password_confirmation{
+  height: 20px;
+  margin-left: 7px;
+  border-style: inset;
+}
+
+input#user_current_password{
+  height: 20px;
+  margin-left: 7px;
+  align-self: left;
+  border-style: inset;
+}
+
+.form-body {
+  /* width: 20%; */
+  opacity: 0.6;
+  margin: auto;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.login-form-body {
+  /* width: 20%; */
+  opacity: 0.6;
+  margin: 15%;
+
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+}
+
+/* this is LOGIN and SIGN UP */
+form.new_user{
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  justify-content: center;
+  align-items: center;
+  padding: 4%;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* this is EDIT */
+form.edit_user{
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  justify-content: center;
+  align-items: center;
+  padding: 3%;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.form_button input {
+  font-family: 'Open Sans', sans-serif;
+  background-color: rgb(250, 132, 132);
+  border: none;
+  color: white;
+  padding: 6px 6px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-left: 10px;
 }
 
 h3{
@@ -27,19 +127,6 @@ h3{
 p{
   font-family: 'Open Sans', sans-serif;
 }
-
-
-/* button {
-  background-color:#ffa292;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 15px;
-  cursor: pointer;
-} */
 
 a {
   position: relative;
@@ -58,12 +145,3 @@ a::before{
   background-color: black;
   transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
-
-@media (hover: hover) and (pointer: fine) {
-  a:hover::before{
-    left: 0;
-    right: auto;
-    width: 100%;
-  }
-}
-

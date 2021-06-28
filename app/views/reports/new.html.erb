@@ -1,12 +1,15 @@
-<h1> Report a user </h1>
+<%= stylesheet_link_tag "reports_page", :media => "screen" %>
+<div class="reports-body">
+  <h1> Report a user </h1>
 
-<p> Please give your reasons for reporting this user. </p>
+  Please give your reasons for reporting this user.
 
-<div class="input_message_form">
-  <%= form_for @report, url: user_reports_path do |f| %>
-    <%= f.text_area :body, class: "message_area"%>
-    <%= f.text_field :user_id, value: @user.id, type: "hidden" %> <br />
-    <%= f.text_field :reporter_id, value: current_user.id, type: "hidden" %> <br />
-    <%= f.submit "Confirm report" %>
-  <% end %>
+  <div class="input_message_form">
+    <%= form_for @report, url: user_reports_path do |f| %>
+      <%= f.text_area :body, class: "report_message_area"%>
+      <%= f.text_field :user_id, value: @user.id, type: "hidden" %> <br />
+      <%= f.text_field :reporter_id, value: current_user.id, type: "hidden" %> <br />
+      <%= f.submit "Confirm report", class: "send_report_button" %>
+    <% end %>
+  </div>
 </div>

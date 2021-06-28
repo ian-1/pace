@@ -5,6 +5,15 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    if !params[:q].nil? && params[:q].downcase == "male"
+      @male_users = []
+      @users.each do |user|
+        @male_users << user if user.gender == "Male"
+      end
+      @users = @male_users
+    elsif params[:q] && !params[:q].empty? 
+      @users = @users.search(params[:q].downcase) 
+    end
   end
 
   def create
@@ -17,7 +26,14 @@ class UsersController < ApplicationController
   end
 
   def show
+    @endorsements = Endorsement.all
+    @endorsement = Endorsement.new
+    @users = User.all
     @user = User.find(params[:id])
+
+    @user_endorsements = push_user_endorsements(@endorsements, @user)
+    @endorsement_counter = calculate_user_endorsements(@endorsements, @user)
+
     @reports = Report.all
     @reported = reported?(@reports, @user, current_user)
   end
@@ -34,6 +50,22 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
+  end
+
+  def push_user_endorsements(endorsements, user)
+    user_endorsements = []
+    endorsements.each do |endorsement|
+      user_endorsements << { user_id: endorsement.endorser_id, message: endorsement.body } if endorsement.user_id == user.id
+    end
+    user_endorsements
+  end
+
+  def calculate_user_endorsements(endorsements, user)
+    counter = 0
+    endorsements.each do |endorsement|
+      counter+= 1 if endorsement.user_id == user.id
+    end
+    counter
   end
 
   def reported?(reports, reported_user, reporter_user)

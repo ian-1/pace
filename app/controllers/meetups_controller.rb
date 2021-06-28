@@ -1,13 +1,20 @@
+require_relative '../../config/api_keys'
+
 class MeetupsController < ApplicationController
   before_action :set_meetup, only: %i[ show edit update destroy ]
 
   # GET /meetups or /meetups.json
   def index
     @meetups = Meetup.all
+    @meetup = Meetup.new
+    @api_key = ENV.fetch('GOOGLE_MAPS_API_KEY')
+    # puts 'HERE', @api_key, 'HERE'
   end
 
   # GET /meetups/1 or /meetups/1.json
   def show
+    @api_key = ENV.fetch('GOOGLE_MAPS_API_KEY')
+    @current_meetup = Meetup.find(params[:id])
   end
 
   # GET /meetups/new
@@ -25,8 +32,12 @@ class MeetupsController < ApplicationController
 
     respond_to do |format|
       if @meetup.save
-        format.html { redirect_to @meetup, notice: "Meetup was successfully created." }
+        # this should take us to conversations.
+        # format.html { redirect_to @meetup, notice: "Meetup was successfully created." }
+        # instead of showing the meetup, we want to share it!
+        format.html { redirect_to conversations_path(@meetup), notice: "Meetup was successfully created. Please click on a conversation to share your meetup." }
         format.json { render :show, status: :created, location: @meetup }
+        # p @meetup, '< MEETUP'
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @meetup.errors, status: :unprocessable_entity }

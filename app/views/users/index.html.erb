@@ -1,35 +1,53 @@
-<%= stylesheet_link_tag "home_page", :media => "screen" %>
-
-<div class="background">
-  <div class="main-body">
-    <% if user_signed_in? %>
-      <% @users.each do |user| %>
-        <div class="user-container">
-          <% if user.profile_pic.attached? %>
-            <% image = user.profile_pic %>
-          <% else %>
-            <% image = 'default.jpg' %>
+<body>
+    <%= stylesheet_link_tag "home_page", :media => "screen" %>
+      <% if user_signed_in? %>
+        <div class="background">
+          <div class="wrap">
+          <br>
+          <br>
+          <%= form_tag("/users", method: 'get') do %>
+             <%= text_field_tag :q, "", class: 'search_box', placeholder: "Find running buddy" %>
+             <%= submit_tag"🔍", class: "magnifying_glass" %>
           <% end %>
-          <%= image_tag(image, class: "profile_pic") %>
-          <div class ="user-details">
-            <p><strong> Name: </strong> <%= user.first_name %></p>
-            <p><strong> Area:</strong> <%= user.postcode %></p>
-            <p><strong> Gender: </strong> <%= user.gender %></p>
-            <p><strong> Ability: </strong> <%= user.ability %></p>
-            <p><strong> Goals: </strong> <%= user.goals %></p>
           </div>
-          <%= button_to "View #{user.first_name}'s Profile", user %>
+          <% @users.each do |user| %>
+            <div class="user-container">
+              <% if user.profile_pic.attached? %>
+                <% image = user.profile_pic %>
+              <% else %>
+                <% image = 'default.jpg' %>
+              <% end %>
+              <%= image_tag(image, class: "profile_pic") %>
+              <div class ="user-details">
+                <p><strong> Name: </strong> <%= user.first_name %></p>
+                <p><strong> Area:</strong> <%= user.postcode %></p>
+                <p><strong> Gender: </strong> <%= user.gender %></p>
+                <p><strong> Ability: </strong> <%= user.ability %></p>
+                <p><strong> Goals: </strong> <%= user.goals %></p>
+              </div>
+
+              <% if user == current_user %>
+                <%= button_to "View Your Profile", user, class: "user_home_button" %>
+              <% else %>
+                <%= button_to "View #{user.first_name}'s Profile", user, class: "user_home_button" %>
+              <% end %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-    <% else %>
-      <div class='button_loggedout'>
-        <%= link_to "Login", new_user_session_path %>
-      </div>
-      </br>
-      <div class='button_loggedout'>
-        <%= link_to "Sign up", new_user_registration_path %>
+      <% else %>
+      <div class="landing_page_background">
+        <div class="landing_page_content">
+          <%= image_tag "pace-landing-logo.png", class: "landing_page_logo"%>
+          <div class="slogan"> <p> Feel safer, train harder </p> </div>
+          <span class='button_loggedout'>
+            <%= link_to "Login", new_user_session_path %>
+          </span>
+          </br>
+          <span class='button_loggedout'>
+            <%= link_to "Sign up", new_user_registration_path %>
+          </span>
+        </div>
       </div>
     <% end %>
-  </div>
-</div>
-
+    <br>
+</body>

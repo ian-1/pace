@@ -5,7 +5,7 @@ feature "Profile page show" do
 
     sign_up_jane
     
-    click_link "View profile"
+    first(:link, "View profile").click
     expect(page).to have_content "Jane"
     expect(page).to have_content "SW1"
     expect(page).to have_content "Female"

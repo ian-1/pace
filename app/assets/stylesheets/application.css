@@ -14,20 +14,33 @@
  *= require_self
  */
 
+ body {
+  margin-top: -11px;
+  margin-left: 1px;
+  margin-right: 1px; 
+}
+
+.ex4 .parent {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
 .header-container {
-    width: 1000px;
+    width: 100%;
     height: 100px;
-    margin: auto;
+    /* margin: auto; */
   }
 
 .pace-logo {
   width: 100px;
   float: left;
+  margin-left: 10%;
   }
 
 header {
   background: rgb(250, 222, 222)
 }
+
 header::after {
   content: '';
   display: table;
@@ -51,7 +64,6 @@ nav li {
 }
 
 nav a {
-  color: black;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 14px;
@@ -62,6 +74,173 @@ nav a {
   font-family: 'Open Sans', sans-serif;
   background-color:rgb(230, 230, 230);
   text-align: center;
-  grid-column: 1 / 4;
-  padding: 20px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  min-height: 50px;
+  margin-bottom: 0px;
+  clear: both;
+}
+
+.top2 {
+  margin: 0px;
+  text-align: center;
+}
+
+.top2a {
+  display: inline-block;
+}
+
+.top2a img {
+  width: 270px;
+  margin-right: 20px;
+}
+
+.top2b {
+  padding: 22px 6px 16px 6px;
+  text-align:center;
+  margin-left: 10%;
+  font: normal 15px 'Open Sans',arial;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.top2b a {
+  color:rgb(210, 110, 110);
+  padding: 26px 20px;
+  border-bottom: 0px solid rgb(210, 110, 110);
+  text-decoration: none;
+  transition: border-bottom 0.2s linear 0s;
+}
+
+.top2b a:hover {
+  color:rgb(210, 110, 110);
+  font-weight: bold;
+  background: transparent;
+  text-decoration: none;
+  border-bottom: 7px solid rgb(210, 110, 110);
+}
+
+.top3 {
+  margin: 0px;
+  text-align: absolute;
+  left: +60px
+}
+
+.bar1, .bar2, .bar3 {
+  width: 46px;
+  height: 6px;
+  background:rgb(210, 110, 110);
+  margin: 5px 3px;
+  transition: 0.4s;
+  border-radius: 5px;
+}
+
+.change .bar1 {
+  transform: rotate(-45deg) translate(-6px, 7px);
+}
+
+.change .bar2 {
+  opacity:0;
+}
+
+.change .bar3 {
+  transform: rotate(45deg) translate(-5px, -8px);
+}
+
+#topmenu {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 42px;
+  right: 80px;
+  display: none;
+  cursor: pointer;
+}
+
+#menu2 {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+  width: 100%;
+  background:rgba(210, 110, 110, 0.55);
+  top: 85px;
+  padding: 10px 0px;
+  z-index: 8;
+}
+
+#menu2 ul {
+  list-style: none;
+  padding: 0px;
+  text-align: center;
+  padding-inline-start: 0px;
+  margin-left: 0px;
+}
+
+#menu2 li a {
+  color:white;
+  font-size: 130%;
+  padding: 8px;
+  display: block;
+  text-decoration: none;
+}
+
+#menu2 li a:hover {
+  background:rgb(187, 98, 98);
+  color:white;
+}
+
+@media only screen and (max-width: 1700px) {
+  .pace-logo {margin-left: 8%;}
+  .top2b {margin-left: 8%;}
+}
+
+@media only screen and (max-width: 1550px) {
+  .pace-logo {margin-left: 6.5%;}
+  .top2b {margin-left: 6.5%;}
+}
+
+@media only screen and (max-width: 1385px) {
+  .pace-logo {margin-left: 5%;}
+  .top2b {margin-left: 5%;}
+}
+
+@media only screen and (max-width: 1260px) {
+  .pace-logo {margin-left: 4%;}
+  .top2b {margin-left: 4%;}
+}
+
+@media only screen and (max-width: 1170px) {
+  .pace-logo {margin-left: 3%;}
+  .top2b {margin-left: 3%;}
+}
+
+@media only screen and (max-width: 1100px) {
+  .top2b a {padding: 26px 0px;}
+  .pace-logo {margin-left: 2%;}
+  .top2b {margin-left: 2%;}
+}
+
+@media only screen and (max-width: 940px) {
+  .top2b a {padding: 26px 0px;}
+  .pace-logo {margin-left: 0;}
+  .top2b {margin-left: 0;}
+}
+
+@media only screen and (max-width: 840px) {
+  nav li {margin-left: 45px;}
+}
+
+@media only screen and (max-width: 700px) {
+  nav li {margin-left: 25px;}
+}
+
+@media only screen and (max-width: 625px) {
+  .top2a {position: absolute; top: 4px; left: 1px;}
+  .top2a img {width: 200px; margin: -2px 0px 0px 2px;}
+  .top2b {display: none;}
+  #topmenu {display: inline-block;}
+  #menu2 {visibility: visible;}
+  #cookies {margin: 0px auto; left: 0px; width: 350px; max-width: calc(100% - 12px);}
 }

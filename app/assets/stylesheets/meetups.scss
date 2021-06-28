@@ -1,3 +1,93 @@
 // Place all the styles related to the Meetups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.background {
+
+}
+
+body{
+  justify-content: center;
+}
+
+h1 {
+  color: #111;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 30px;
+  padding: 2% 3%;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  color: #111;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 15px;
+}
+
+.instructions{
+  justify-content: left;
+}
+
+#form {
+  text-align: center;
+  margin-left: 20%;
+  margin-right: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.field {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 15px;
+  text-align: center;
+  display: inline-block !important;
+}
+
+#meetup_name {
+  text-align: center;
+  justify-content: center;
+  width: 200px;
+  margin-right: 5px;
+}
+
+.map-holder {
+  min-width: 350px;
+  justify-content: center;
+}
+
+#map {
+  margin-left: 5%;
+  margin-right: 5%;
+  max-width: 90%;
+  justify-content: center;
+  margin-bottom: 70px;
+}
+
+.submit_meetup input {
+  font-family: 'Open Sans', sans-serif;
+  background-color: rgb(250, 132, 132);
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  padding: 6px 6px;
+}
+
+.location {
+  color: #111;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 30px;
+  padding: 5% 7%;
+  text-align: center;
+}
+
+.meetup {
+  text-align: center;
+  color: #111;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 15px;
+  margin-bottom: 5%;
+}

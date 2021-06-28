@@ -1,14 +1,39 @@
 <header>
-  <div class="header-container">
-  <a href="/"><%= image_tag "pace-logo.png", class: "pace-logo"%></a>
-    <nav>
-        <ul>
-        <% if user_signed_in? %>
-          <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
-          <li><%= link_to('View profile', current_user) %></li>
-          <li><%= link_to("View inbox", conversations_path) %></li>
-        <% end %>
-        </ul>
-    </nav>
-  </div>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% if user_signed_in? %>
+    <div class="header-container">
+      <a href="/"><%= image_tag "pace-logo.png", class: "pace-logo"%></a>
+      <nav>
+          <ul>
+            <div class="top2b">
+                <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+                <li><%= link_to('View profile', current_user) %></li>
+                <% if User.unread_counter(current_user).nil? || User.unread_counter(current_user) == 0 %>
+                  <li><%= link_to("View inbox", conversations_path) %></li>
+                <% else %>
+                  <li><b><%= link_to("View inbox (#{User.unread_counter(current_user)})", conversations_path) %></b></li>
+                <% end %>
+                <li><%= link_to("Plan a meetup", meetups_path) %></li>      
+            </div>
+            <div id="topmenu" onclick="drop2(event)">
+              <div class="bar1"></div>
+              <div class="bar2"></div>
+              <div class="bar3"></div>
+            </div>
+            <div id="menu2" onclick="hide2()">
+              <ul>
+                <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+                <li><%= link_to('View profile', current_user) %></li>
+                <% if User.unread_counter(current_user).nil? || User.unread_counter(current_user) == 0 %>
+                  <li><%= link_to("View inbox", conversations_path) %></li>
+                <% else %>
+                  <li><b><%= link_to("View inbox (#{User.unread_counter(current_user)})", conversations_path) %></b></li>
+                <% end %>
+                <li><%= link_to("Plan a meetup", meetups_path) %></li>
+              </ul>
+            </div>
+          </ul>
+      </nav>
+    </div>
+  <% end %>
 </header>

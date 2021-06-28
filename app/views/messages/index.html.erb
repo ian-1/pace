@@ -1,44 +1,52 @@
 <%= stylesheet_link_tag "messages", :media => "screen" %>
 
-<% @messages.each do |message| %>
-  <% if message.body %>
-    <% user = User.find(message.user_id) %>
-    <% if message.user_id == current_user.id %>
-
-    <div class="message_sent">
-      <span class="sent_bubble">
-        <%= message.body %>
-      </span>
-      <br />
-      <br />
-      <span class="sent_bubble_meta">
-        <small> <%= user.first_name %> <%= message.message_time.to_s[9,20] %> </small>
-      </span>
-      <br />
-    </div>
-
+<div class="messages-body">
+  <% @messages.each do |message| %>
+    <% if message.body %>
+      <% user = User.find(message.user_id) %>
+      <% if message.user_id == current_user.id %>
+        <div class="message_sent">
+          <span class="sent_bubble">
+            <%= replace_text_urls_with_links(message.body) %>
+          </span>
+          <br />
+          <br />
+          <span class="sent_bubble_meta">
+            <small> <b><%= 'unread ' if message.read.to_s == '0' %></b><%= user.first_name %> <%= message.message_time.to_s[9,20] %> </small>
+          </span>
+          <br />
+        </div>
       <% else %>
-
-    <div class="message_received">
-      <span class="received_bubble">
-        <%= message.body %>
-      </span>
-      <br>
-      <br>
-      <span class="received_bubble_meta">
-        <small> <%= user.first_name %> <%= message.message_time.to_s[9,20] %> </small>
-      </span>
-      <br />
-    </div>
+        <div class="message_received">
+          <span class="received_bubble">
+            <%= replace_text_urls_with_links(message.body) %>
+          </span>
+          <br>
+          <br>
+          <span class="received_bubble_meta">
+            <small> <b><%= 'unread ' if message.read.to_s == '0' %></b><%= user.first_name %> <%= message.message_time.to_s[9,20] %> </small>
+          </span>
+          <br />
+        </div>
+      <% end %>
     <% end %>
   <% end %>
- <% end %>
 
-<div class="input_message_form">
-<%= form_for [@conversation, @message] do |f| %>
-  <%= f.text_area :body, class: "message_area"%>
-  <%= f.text_field :user_id, value: current_user.id, type: "hidden" %> <br />
-  <%= f.submit "Send message" %>
-<% end %>
+    <div class="input_message_form">
+    <% if !@current_meetup%>
+      <%= form_for [@conversation, @message] do |f| %>
+        <%= f.text_area :body, class: "message_area"%>
+        <%= f.text_field :user_id, value: current_user.id, type: "hidden" %> <br />
+        <%= f.number_field :read, value: 0, type: "hidden" %> <br />
+        <%= f.submit "Send message", class: "send_message_button" %>
+      <% end %>
+    <% else %>
+      <%= form_for [@conversation, @message] do |f| %>
+        <%= f.text_area :body, class: "message_area", value: "Let's meet here http://localhost:3000/meetups/#{@current_meetup.id}" %>
+        <%= f.text_field :user_id, value: current_user.id, type: "hidden" %> <br />
+        <%= f.number_field :read, value: 0, type: "hidden" %> <br />
+        <%= f.submit "Send message", class: "send_message_button" %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
-
