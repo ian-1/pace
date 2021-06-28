@@ -58,16 +58,16 @@ Originally inspired by the idea of bringing people together via their common int
 * Users can visit the profiles of other users
 * Users can message other users on their profiles
 * Users can see messages delivered to them in their inbox
-* All conversations are stored in their inbox
+* Users can see how many unread messages they have in total and which users those messages refer to
+* Users can see if a user has read their message
 * Users can set a meetup point on a map where they can meet up with their partner
 * They can share the location in the chat
 * They can view the meetup spot marked on a map
-* Users can endorse other users 
+* Users can endorse other users (with or without a message) 
 * Users can report other users
 
 ## Built using
 * Ruby on Rails
-* Ruby
 * HTML
 * CSS
 * JavaScript
